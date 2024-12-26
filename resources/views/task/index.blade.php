@@ -160,22 +160,22 @@
                                                        <div class="form-group row">
                                                          <label class="col-sm-3 form-control-label">Title</label>
                                                          <div class="col-sm-9">
-                                                           <input id="inputHorizontalSuccess" type="text" name="title" value="{{ $task->title }}" placeholder="Enter Title" class="form-control form-control-success">
-                                                           @if ($errors->has('title'))<span class="text-danger"> {{ $errors->first('title') }}</span>@endif
+                                                           <input id="inputHorizontalSuccess" type="text" name="title" value="{{ $task->title }}" placeholder="Enter Title" class="form-control form-control-success" required>
+
                                                        </div>
                                                        </div>
                                                        <div class="form-group row">
                                                          <label class="col-sm-3 form-control-label">Description</label>
                                                          <div class="col-sm-9">
-                                                           <textarea name="description" class="form-control form-control-success" placeholder="Enter Description">{{ $task->description }}</textarea>
-                                                           @if ($errors->has('description'))<span class="text-danger"> {{ $errors->first('description') }}</span>@endif
+                                                           <textarea name="description" class="form-control form-control-success" placeholder="Enter Description" required>{{ $task->description }}</textarea>
+
                                                        </div>
                                                        </div>
                                                        <div class="form-group row">
                                                            <label class="col-sm-3 form-control-label">Due Date</label>
                                                            <div class="col-sm-9">
-                                                             <input id="inputHorizontalSuccess" type="date" name="due_date" value="{{ $task->due_date }}" placeholder="Due Date" class="form-control form-control-success">
-                                                             @if ($errors->has('due_date'))<span class="text-danger"> {{ $errors->first('due_date') }}</span>@endif
+                                                             <input id="inputHorizontalSuccess" type="date" name="due_date" value="{{ $task->due_date }}" placeholder="Due Date" class="form-control form-control-success" required>
+
                                                            </div>
                                                          </div>
                                                    </div>
@@ -192,15 +192,6 @@
                         </div>
                     </div>
 
-                    @push('scripts')
-                        <script>
-                            $(document).ready(function() {
-                                @if ($errors->any())
-                                    $('#editTask{{ $task->id }}').modal('show');
-                                @endif
-                            });
-                        </script>
-                    @endpush
 
                 @empty
                     <tr class="text-danger text-center">

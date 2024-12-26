@@ -8,8 +8,14 @@
 - **Git**: To clone the repository
 ---
 ## Installation
-
-### 1. Clone the Repository
 ```bash
 git clone https://github.com/mydomian/Task-Management-System.git
 cd Task-Management-System
+composer udpate
+cp .env.example .env
+php artisan key:generate
+create database task_management
+php artisan migrate
+php artisan storage:link
+php artisan serve
+

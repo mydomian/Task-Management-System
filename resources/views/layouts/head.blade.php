@@ -8,5 +8,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
 <link rel="stylesheet" href="{{ asset('/storage/assets/css/style.default.css') }}" id="theme-stylesheet">
 <link rel="stylesheet" href="{{ asset('/storage/assets/css/custom.css') }}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <link rel="shortcut icon" href="img/favicon.ico">
 @stack('css')

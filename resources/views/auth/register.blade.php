@@ -29,28 +29,28 @@
                   <form action="{{ route('register') }}" method="post" class="text-left form-validate">
                     @csrf
                     <div class="form-group-material">
-                      <input id="register-name" type="text" name="name" data-msg="Please enter your name" class="input-material" >
+                      <input id="register-name" type="text" name="name" value="{{ old('name') }}" class="input-material" >
                       <label for="register-name" class="label-material">Full Name</label>
-                      @if ($errors->has('name'))<div class="alert alert-danger"> {{ $errors->first('name') }}</div>@endif
+                      @if ($errors->has('name'))<span class="text-danger"> {{ $errors->first('name') }}</span>@endif
                     </div>
                     <div class="form-group-material">
-                      <input id="register-email" type="email" name="email" data-msg="Please enter a valid email address" class="input-material" >
+                      <input id="register-email" type="email" name="email" value="{{ old('email') }}"  class="input-material" >
                       <label for="register-email" class="label-material">Email Address</label>
-                      @if ($errors->has('email'))<div class="alert alert-danger"> {{ $errors->first('email') }}</div>@endif
+                      @if ($errors->has('email'))<span class="text-danger"> {{ $errors->first('email') }}</span>@endif
                     </div>
                     <div class="form-group-material">
-                      <input id="register-password" type="password" name="password" data-msg="Please enter your password" class="input-material" min="4" >
+                      <input id="register-password" type="password" name="password" value=""  class="input-material" >
                       <label for="register-password" class="label-material">Password        </label>
-                      @if ($errors->has('password'))<div class="alert alert-danger"> {{ $errors->first('password') }}</div>@endif
+                      @if ($errors->has('password'))<span class="text-danger"> {{ $errors->first('password') }}</span>@endif
                     </div>
                     <div class="form-group-material">
-                        <input id="register-password-confirm" type="password" name="password_confirmation" data-msg="Please confirm your password" class="input-material" >
+                        <input id="register-password-confirm" type="password" name="password_confirmation"  class="input-material" >
                         <label for="register-password-confirm" class="label-material">Confirm Password</label>
                         @if ($errors->has('password_confirmation'))
-                            <div class="alert alert-danger"> {{ $errors->first('password_confirmation') }}</div>
+                            <span class="text-danger"> {{ $errors->first('password_confirmation') }}</span>
                         @endif
                     </div>
-                    <div class="form-group text-center">
+                    <div class="form-group">
                       <input id="register" type="submit" value="Register" class="btn btn-primary">
                     </div>
                   </form><small>Already have an account? </small><a href="{{ route('login') }}" class="signup">Login</a>

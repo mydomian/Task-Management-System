@@ -13,4 +13,9 @@ class Task extends Model
         'status',
         'due_date',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->select('id','name','email');
+    }
 }

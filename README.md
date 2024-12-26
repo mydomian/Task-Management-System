@@ -11,5 +11,5 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone [<repository-url>](https://github.com/mydomian/Task-Management-System.git)
-cd <project-directory>
+git clone https://github.com/mydomian/Task-Management-System.git
+cd Task-Management-System

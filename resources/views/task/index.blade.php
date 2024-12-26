@@ -263,7 +263,7 @@
 <script>
     $(document).ready(function() {
         @if ($errors->any())
-            $('#myModal').modal('show');
+            $('#addTask').modal('show');
         @endif
     });
 

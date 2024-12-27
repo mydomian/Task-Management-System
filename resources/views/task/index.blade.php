@@ -58,7 +58,14 @@
                         <td>{{ $task->title ?? '' }}</td>
                         <td>{{ Str::of($task->description)->limit(15) ?? '' }}</td>
                         <td>{{ $task->due_date ?? '' }}</td>
-                        <td>{{ $task->status ?? '' }}</td>
+                        <td>
+                            <select id="status" name="status" class="form-control form-control-sm">
+                                <option value="">{{ $task->status }}</option>
+                                <option value="pending" {{ $task->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="processing" {{ $task->status == 'processing' ? 'selected' : '' }}>Processing</option>
+                                <option value="completed" {{ $task->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                            </select>
+                        </td>
                         <td>
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#viewTask{{ $task->id }}">
                                 <i class="fa fa-eye"></i> view
@@ -71,9 +78,44 @@
                                 @method('DELETE')
                             </form>
                             <button class="btn btn-sm btn-primary" onclick="confirmDelete({{ $task->id }})"><i class="fa fa-trash"></i> Delete</button>
+
                         </td>
                     </tr>
 
+                    {{-- Task Status --}}
+                    @push('scripts')
+                        <script>
+                            $('#status').change(function() {
+                                var newStatus = $(this).val();
+                                Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: "Do you want to change the task status?",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Yes, change it!',
+                                    cancelButtonText: 'No, cancel'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $.ajax({
+                                            url: `/task-status/{{ $task->id }}`,
+                                            method: 'GET',
+                                            data:{status:newStatus},
+                                            success: function(response) {
+                                                Swal.fire('Updated!', 'Task status has been updated.', 'success');
+                                            },
+                                            error: function(error) {
+                                                Swal.fire('Error!', 'An error occurred while updating the status.', 'error');
+                                            }
+                                        });
+                                    } else {
+                                        $(this).val('{{ $task->status }}');
+                                    }
+                                });
+                            });
+
+
+                        </script>
+                    @endpush
 
                     {{-- View Task --}}
                     <div class="modal fade" id="viewTask{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="viewTaskLabel{{ $task->id }}" aria-hidden="true">
